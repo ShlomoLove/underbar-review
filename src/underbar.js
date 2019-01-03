@@ -376,7 +376,15 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
-    
+    var shuffled = [];
+    var copiedArray = array.slice(0);
+
+    while (copiedArray.length > 0) {
+      var i = Math.floor(Math.random() * copiedArray.length);
+      shuffled.push(copiedArray[i]);
+      copiedArray.splice(i, 1);
+    }
+    return shuffled;
   };
 
 
