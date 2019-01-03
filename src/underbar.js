@@ -343,9 +343,27 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
-    
-  };
 
+    var memoize = function() {
+      var cache = memoize.cache;
+      var address = JSON.stringify(arguments);
+      if (!cache.hasOwnProperty(address)) {
+        cache[address] = func.apply(this, arguments);
+      }
+      console.log (cache)
+      return cache[address];
+    }
+    memoize.cache = {};
+    return memoize; 
+  };
+  // return function() {
+  //   if (!cache[[func, result]]) {
+  //     result = func.apply(this, arguments);
+  //       cache[[func, result]] = result;
+  //       alreadyCalled = true;
+  //     }
+  //     return result;
+  //   };
   // Delays a function for the given number of milliseconds, and then calls
   // it with the arguments supplied.
   //
