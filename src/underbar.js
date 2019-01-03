@@ -112,12 +112,19 @@
     if (isSorted === true) {
       _.each(array, function(element) {
         if(_.indexOf(holder, iterator(element)) === -1) {
-          holder.push (iterator(element));
+          holder.push (iterator(element)); // [T, F, F, F, F]
           output.push(element)
         }
+        
       })
+    } else {
+      _.each(array, function(element) {
+        if (_.indexOf(output, element) === -1) {
+          output.push (element)
+        }
+      });
     }
-
+    return output;
   };
 
 
