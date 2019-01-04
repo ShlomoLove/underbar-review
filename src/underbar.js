@@ -416,15 +416,15 @@
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
-   if (typeof iterator === 'string') {
-     var stringIter = iterator; 
-     iterator = function (item) {
-       return item[stringIter];
-     };
-   }
-   return collection.sort(function(a, b) {
-     return iterator(a) - iterator(b);
-   })
+    if (typeof iterator === 'string') {
+    var stringIter = iterator; 
+    iterator = function (item) {
+      return item[stringIter];
+      };
+    }
+    return collection.sort(function(a, b) {
+      return iterator(a) - iterator(b);
+    })
   };
 
   // Zip together two or more arrays with elements of the same index
@@ -434,22 +434,17 @@
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
     let output = [];
-    for (let i = 0; i < arguments.length; i++) {
-      for (let y = 0; y < arguments[i].length; y++) {
-        if (y > arguments[i].length) {
-          output[y].push(undefined);
-        } else {
-          output[y].push(arguments[i][y]);
-        } 
-
-        // if (Array.isArray(output[y])) {
-        //   output[y].push(arguments[i][y])
-        // } else {
-
-        // } 
+    let longest = 0;
+    
+    for (let x = 0; x < arguments.length; x++) {
+      if (arguments[x].length > longest) {
+        longest = arguments[x].length;
       }
+    };
+    for (let i = 0; i < longest; i++) {
+      output[i] = _.pluck(arguments, i)
     }
-
+    return output;
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
