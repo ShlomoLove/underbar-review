@@ -398,14 +398,14 @@
   // Calls the method named by functionOrKey on each value in the list.
   // Note: You will need to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
-    let output = []
+    let output = [];
     if (typeof functionOrKey === 'function') {
       for (let i = 0; i < collection.length; i++) {
-        output.push(functionOrKey.apply(collection[i]))
+        output.push(functionOrKey.apply(collection[i]));
       }
     } else {
       for (let i = 0; i < collection.length; i++) {
-        output.push(collection[i][functionOrKey]())
+        output.push(collection[i][functionOrKey]());
       }
     }
     return output; 
@@ -419,11 +419,11 @@
    if (typeof iterator === 'string') {
      var stringIter = iterator; 
      iterator = function (item) {
-       return item[stringIter]
+       return item[stringIter];
      };
    }
    return collection.sort(function(a, b) {
-     return iterator(a) - iterator(b)
+     return iterator(a) - iterator(b);
    })
   };
 
@@ -433,6 +433,23 @@
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
+    let output = [];
+    for (let i = 0; i < arguments.length; i++) {
+      for (let y = 0; y < arguments[i].length; y++) {
+        if (y > arguments[i].length) {
+          output[y].push(undefined);
+        } else {
+          output[y].push(arguments[i][y]);
+        } 
+
+        // if (Array.isArray(output[y])) {
+        //   output[y].push(arguments[i][y])
+        // } else {
+
+        // } 
+      }
+    }
+
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.

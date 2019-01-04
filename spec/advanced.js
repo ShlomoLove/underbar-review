@@ -102,7 +102,7 @@
 
     describe('zip', function() {
 
-      xit('should zip together arrays of different lengths', function() {
+      it('should zip together arrays of different lengths', function() {
         var names = ['moe', 'larry', 'curly'];
         var ages = [30, 40, 50];
         var leaders = [true];
